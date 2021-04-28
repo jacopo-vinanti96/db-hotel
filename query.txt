@@ -26,7 +26,7 @@ WHERE `document_type` = 'CI'
 2)
 SELECT * 
 FROM `ospiti` 
-WHERE `date_of_birth` > '1989-01-01'
+WHERE `date_of_birth` >= '1989-01-01'
 
 
 3)
@@ -49,9 +49,11 @@ WHERE `status` = 'accepted'
 
 
 6)
-SELECT MAX(`price`) 
-FROM `pagamenti` 
+SELECT *
+FROM `pagamenti`
 WHERE `status` = 'accepted'
+ORDER BY `price` DESC
+LIMIT 1
 
 
 7)
