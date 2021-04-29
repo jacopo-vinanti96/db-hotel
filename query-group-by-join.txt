@@ -35,10 +35,11 @@ FROM `prenotazioni`
 GROUP BY TIME(`created_at`)
 
 5)
-SELECT MAX(`ospite_id`) AS 'id_ospite', COUNT(`id`) AS 'Totale_prenotazioni'
-FROM `paganti`
+SELECT COUNT(`id`) AS 'Totale_prenotazioni'
+FROM `prenotazioni_has_ospiti`
 GROUP BY `ospite_id`
-HAVING `ospite_id` > 0
+ORDER BY COUNT(`id`) DESC
+LIMIT 1
 
 
 JOIN
