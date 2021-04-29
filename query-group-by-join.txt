@@ -1,0 +1,54 @@
+﻿GROUP BY
+
+1) Conta gli ospiti raggruppandoli per anno di nascita
+
+2) Somma i prezzi dei pagamenti raggruppandoli per status
+
+3) Conta quante volte è stata prenotata ogni stanza
+
+4) Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti
+
+5) Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
+
+
+
+Risposte:
+
+1)
+SELECT DATE(`date_of_birth`) AS 'Anno', COUNT(`id`) AS 'Totale'
+FROM `ospiti` 
+GROUP BY DATE(`date_of_birth`)
+
+2)
+SELECT `status`, SUM(`price`) AS 'Totale'
+FROM `pagamenti`
+GROUP BY `status`
+
+3)
+SELECT `stanza_id`, COUNT(`stanza_id`) AS 'Totale_prenotazioni'
+FROM `prenotazioni`
+GROUP BY `stanza_id`
+
+4)
+SELECT TIME(`created_at`) AS 'Orario', COUNT(`id`) AS 'Totale_prenotazioni'
+FROM `prenotazioni`
+GROUP BY TIME(`created_at`)
+
+5)
+SELECT MAX(`ospite_id`) AS 'id_ospite', COUNT(`id`) AS 'Totale_prenotazioni'
+FROM `paganti`
+GROUP BY `ospite_id`
+HAVING `ospite_id` > 0
+
+JOIN
+
+1) Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
+
+2) Stampare tutti gli ospiti per ogni prenotazione
+
+3) Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
+
+4) Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
+
+5) Prendi i dati di fatturazione per la prenotazione con id=7
+6) Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate) 
