@@ -40,6 +40,7 @@ FROM `paganti`
 GROUP BY `ospite_id`
 HAVING `ospite_id` > 0
 
+
 JOIN
 
 1) Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
@@ -52,3 +53,17 @@ JOIN
 
 5) Prendi i dati di fatturazione per la prenotazione con id=7
 6) Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate) 
+
+Risposte:
+
+1) 
+SELECT COUNT(`id`)
+FROM `prenotazioni_has_ospiti`
+GROUP BY `ospite_id`
+HAVING COUNT(`id`) > 2
+
+2)
+SELECT `ospiti`.`name`, `prenotazioni_has_ospiti`.`prenotazione_id`
+FROM `ospiti`
+INNER JOIN `prenotazioni_has_ospiti`
+ON `ospiti`.`id` = `prenotazioni_has_ospiti`.`ospite_id` ORDER BY `date_of_birth`  ASC
